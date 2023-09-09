@@ -9,10 +9,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Word::class], version = 2, exportSchema = false)
+@Database(entities = [Word::class, User::class], version = 3, exportSchema = false)
 public abstract class WordRoomDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
+    abstract fun userDao(): UserDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

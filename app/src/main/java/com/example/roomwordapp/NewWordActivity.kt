@@ -21,10 +21,11 @@ class NewWordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_word)
         editWordView = findViewById(R.id.edit_word)
+        val receivedData = intent.getStringExtra("word")
 
+        Log.d("DATA", receivedData.toString())
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
-            Log.d("HELLO", editWordView.text.toString())
             val text = editWordView.text.toString()
             GlobalScope.launch {
                 WordsApplication().database.wordDao().insert(Word(word = text))

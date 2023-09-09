@@ -27,6 +27,7 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,12 +42,14 @@ class DashboardFragment : Fragment() {
 
 
         val recyclerView = binding.recyclerview
-        val adapter = WordListAdapter()
+        val adapter = context?.let { WordListAdapter(it) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
         wordViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
             // Update the cached copy of the words in the adapter.
-            words?.let { adapter.submitList(it) }
+            words?.let {
+                adapter?.submitList(it)
+            }
         })
 
 

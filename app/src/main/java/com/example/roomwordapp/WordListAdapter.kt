@@ -1,5 +1,7 @@
 package com.example.roomwordapp
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +11,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class WordListAdapter : ListAdapter<Word, WordListAdapter.WordViewHolder>(WordsComparator()) {
+class WordListAdapter(private val context: Context) : ListAdapter<Word, WordListAdapter.WordViewHolder>(WordsComparator()) {
+    interface OnItemClickListener {
+        fun onItemClick(data: Word)
+    }
+    private var listener: OnItemClickListener? = null
 
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         return WordViewHolder.create(parent)
     }
@@ -19,15 +30,30 @@ class WordListAdapter : ListAdapter<Word, WordListAdapter.WordViewHolder>(WordsC
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current.word)
-        holder.fab.setOnClickListener {
-            Log.d("HELLO", "TERKLIK")
-        }
+        val item = currentList[position]
+
         // Handle edit button click
+        holder.fab.setOnClickListener {
+            Log.d("HELLO", currentList[position].id.toString())
+            Log.d("HELLO", "TERKLIK")
+            val intent = Intent(context, NewWordActivity::class.java)
+            intent.putExtra("word", item.toString())
+            context.startActivity(intent)
+            listener?.onItemClick(item)
+        }
+
+        holder.btnDelete.setOnClickListener {
+            GlobalScope.launch {
+                currentList[position].id?.let { it1 -> WordsApplication().database.wordDao().deleteByUserId(id = it1) }
+            }
+        }
+
     }
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.textView)
         val fab: View = itemView.findViewById(R.id.buttonEdit)
+        val btnDelete: View = itemView.findViewById(R.id.buttonDelete)
 
 
         fun bind(text: String?) {

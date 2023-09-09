@@ -57,12 +57,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
-//        openSomeActivityForResult()
-        val fab: View = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            this.openSomeActivityForResult()
-        }
+        fabSetup()
 
         createNotificationChannel()
 
@@ -77,6 +72,13 @@ class MainActivity : AppCompatActivity() {
             .map { Random.nextInt(0, charPool.size) }
             .map(charPool::get)
             .joinToString("")
+    }
+
+    private fun fabSetup() {
+        val fab: View = binding.fab
+        fab.setOnClickListener {
+            this.openSomeActivityForResult()
+        }
     }
 
     private fun createNotificationChannel() {
@@ -121,7 +123,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSomeActivityForResult() {
-//        val intent = Intent(this, NewWordActivity::class.java)
         val intent = Intent(this, NewWordActivity::class.java)
 
         resultLauncher.launch(intent)
