@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordapp.databinding.ActivityMain2Binding
 import com.example.roomwordapp.databinding.ActivityMainBinding
+import com.example.roomwordapp.ui.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.random.Random
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(Toolbar(this))
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        openSomeActivityForResult(LoginActivity::class.java)
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main2)
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun fabSetup() {
         val fab: View = binding.fab
         fab.setOnClickListener {
-            this.openSomeActivityForResult()
+            this.openSomeActivityForResult(NewWordActivity::class.java)
         }
     }
 
@@ -122,8 +123,8 @@ class MainActivity : AppCompatActivity() {
         notificationManager.notify(1, notificationBuilder.build())
     }
 
-    private fun openSomeActivityForResult() {
-        val intent = Intent(this, NewWordActivity::class.java)
+    private fun openSomeActivityForResult(activityName: Class<*>) {
+        val intent = Intent(this, activityName)
 
         resultLauncher.launch(intent)
     }

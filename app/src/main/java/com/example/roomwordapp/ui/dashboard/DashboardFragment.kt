@@ -52,11 +52,6 @@ class DashboardFragment : Fragment() {
             }
         })
 
-
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
     private val wordViewModel: WordViewModel by viewModels {
