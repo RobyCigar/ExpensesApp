@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.repository.WordRepository
 import kotlinx.coroutines.launch
 

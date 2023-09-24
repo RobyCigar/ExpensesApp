@@ -1,7 +1,7 @@
 package com.example.roomwordapp.data.repository
 
 import androidx.annotation.WorkerThread
-import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.dao.WordDao
 import kotlinx.coroutines.flow.Flow
 

@@ -20,6 +20,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.viewmodel.WordViewModel
 import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.databinding.ActivityMainBinding

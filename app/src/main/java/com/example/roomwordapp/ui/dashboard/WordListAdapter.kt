@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordapp.R
-import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.WordsApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

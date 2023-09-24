@@ -9,7 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import com.example.roomwordapp.R
-import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.WordsApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
