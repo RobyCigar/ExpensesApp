@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.roomwordapp.User
-import com.example.roomwordapp.UserDao
+import com.example.roomwordapp.data.dao.UserDao
 import com.example.roomwordapp.Word
-import com.example.roomwordapp.WordDao
+import com.example.roomwordapp.data.dao.WordDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

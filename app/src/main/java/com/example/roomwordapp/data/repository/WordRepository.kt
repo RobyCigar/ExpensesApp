@@ -1,6 +1,8 @@
-package com.example.roomwordapp
+package com.example.roomwordapp.data.repository
 
 import androidx.annotation.WorkerThread
+import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.dao.WordDao
 import kotlinx.coroutines.flow.Flow
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO

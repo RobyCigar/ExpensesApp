@@ -1,10 +1,12 @@
-package com.example.roomwordapp
+package com.example.roomwordapp.data.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.repository.WordRepository
 import kotlinx.coroutines.launch
 
 class WordViewModel(private val repository: WordRepository) : ViewModel() {

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <meta-data
+        android:name="com.google.android.gms.wallet.api.enabled"
+        android:value="true" />
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -45,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewWordActivity"
+            android:name=".ui.dashboard.NewWordActivity"
             android:exported="false" />
     </application>
 

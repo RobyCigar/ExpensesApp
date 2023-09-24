@@ -1,10 +1,12 @@
 package com.example.roomwordapp.ui.onboarding
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager.widget.ViewPager
+import com.example.roomwordapp.MainActivity
 import com.example.roomwordapp.R
 import com.example.roomwordapp.ui.login.LoginActivity
 
@@ -28,7 +30,7 @@ class OnboardingActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         btnSkip.setOnClickListener {
-            launchHomeScreen()
+            launchLoginScreen()
         }
 
         btnNext.setOnClickListener {
@@ -36,12 +38,23 @@ class OnboardingActivity : AppCompatActivity() {
             if (current < layouts.size - 1) {
                 viewPager.currentItem = current + 1
             } else {
-                launchHomeScreen()
+                launchLoginScreen()
             }
         }
-    }
 
-    private fun launchHomeScreen() {
+        val isLoggedIn = checkLoginStatus()
+
+        if (isLoggedIn) {
+            // User is already logged in, navigate to the dashboard
+            launchHomeScreen()
+        }
+    }
+    private fun checkLoginStatus(): Boolean {
+        // Retrieve the login status from SharedPreferences
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isLoggedIn", false)
+    }
+    private fun launchLoginScreen() {
         // Add code to navigate to the home screen or the next activity after onboarding
         // For simplicity, we'll just finish this activity
         val intent = Intent(this, LoginActivity::class.java)
@@ -49,4 +62,11 @@ class OnboardingActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun launchHomeScreen() {
+        // Add code to navigate to the home screen or the next activity after onboarding
+        // For simplicity, we'll just finish this activity
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

@@ -10,24 +10,20 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.roomwordapp.databinding.ActivityMain2Binding
+import com.example.roomwordapp.data.viewmodel.WordViewModel
+import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.databinding.ActivityMainBinding
-import com.example.roomwordapp.ui.login.LoginActivity
+import com.example.roomwordapp.ui.dashboard.NewWordActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.random.Random
 
@@ -41,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
         setSupportActionBar(Toolbar(this))
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -63,10 +60,10 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
-        val button = findViewById<Button>(R.id.notificationBtn)
-        button.setOnClickListener {
-            showNotification()
-        }
+//        val button = findViewById<Button>(R.id.notificationBtn)
+//        button.setOnClickListener {
+//            showNotification()
+//        }
     }
     private fun generateRandomString(length: Int): String {
         val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') // Define the character pool

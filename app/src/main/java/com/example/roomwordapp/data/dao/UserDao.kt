@@ -1,9 +1,10 @@
-package com.example.roomwordapp
+package com.example.roomwordapp.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.roomwordapp.User
 
 @Dao
 interface UserDao {

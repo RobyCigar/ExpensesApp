@@ -1,7 +1,6 @@
-package com.example.roomwordapp
+package com.example.roomwordapp.ui.dashboard
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +8,11 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.example.roomwordapp.R
+import com.example.roomwordapp.Word
+import com.example.roomwordapp.WordsApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class NewWordActivity : AppCompatActivity() {
 

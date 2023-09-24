@@ -4,18 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.roomwordapp.R
-import com.example.roomwordapp.WordListAdapter
-import com.example.roomwordapp.WordViewModel
-import com.example.roomwordapp.WordViewModelFactory
+import com.example.roomwordapp.data.viewmodel.WordViewModel
+import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.WordsApplication
 import com.example.roomwordapp.databinding.FragmentDashboardBinding
 

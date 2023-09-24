@@ -1,20 +1,23 @@
-package com.example.roomwordapp
+package com.example.roomwordapp.ui.dashboard
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.roomwordapp.R
+import com.example.roomwordapp.Word
+import com.example.roomwordapp.WordsApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class WordListAdapter(private val context: Context) : ListAdapter<Word, WordListAdapter.WordViewHolder>(WordsComparator()) {
+class WordListAdapter(private val context: Context) : ListAdapter<Word, WordListAdapter.WordViewHolder>(
+    WordsComparator()
+) {
     interface OnItemClickListener {
         fun onItemClick(data: Word)
     }
@@ -34,8 +37,6 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
         // Handle edit button click
         holder.fab.setOnClickListener {
-            Log.d("HELLO", currentList[position].id.toString())
-            Log.d("HELLO", "TERKLIK")
             val intent = Intent(context, NewWordActivity::class.java)
             intent.putExtra("word", item.toString())
             context.startActivity(intent)

@@ -1,6 +1,7 @@
 package com.example.roomwordapp.ui.login
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -61,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                updateLoginStatus(isLoggedIn = true)
 //                updateUiWithUser(loginResult.success)
             }
             setResult(Activity.RESULT_OK)
@@ -100,6 +102,13 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
         }
+    }
+
+    private fun updateLoginStatus(isLoggedIn: Boolean) {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLoggedIn", isLoggedIn)
+        editor.apply()
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

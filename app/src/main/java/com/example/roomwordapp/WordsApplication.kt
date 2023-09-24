@@ -2,6 +2,7 @@ package com.example.roomwordapp
 
 import android.app.Application
 import com.example.roomwordapp.data.datasource.WordRoomDatabase
+import com.example.roomwordapp.data.repository.WordRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
