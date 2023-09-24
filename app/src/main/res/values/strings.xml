@@ -33,4 +33,17 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Onboarding screen texts -->
+    <string name="onboarding_screen1_title">Pantau Pengeluaran Bisnis Anda</string>
+    <string name="onboarding_screen1_description">Selamat datang di aplikasi kami! Memantau pengeluaran bisnis Anda akan menjadi lebih mudah dan efisien. Kami membantu Anda melacak setiap transaksi dengan tepat dan akurat.</string>
+
+    <string name="onboarding_screen2_title">Kelola Keuangan dengan Lebih Teratur</string>
+    <string name="onboarding_screen2_description">Kontrol keuangan Anda dengan rapi dan teratur. Aplikasi kami memungkinkan Anda mengelompokkan pengeluaran, membuat laporan keuangan, dan mengatur anggaran agar bisnis Anda tetap berjalan lancar.</string>
+
+    <string name="onboarding_screen3_title">Lihat Analisis Keuangan yang Mendalam</string>
+    <string name="onboarding_screen3_description">Dapatkan wawasan mendalam tentang kinerja keuangan bisnis Anda. Analisis yang cermat membantu Anda membuat keputusan yang tepat. Mulai manajemen keuangan yang lebih cerdas bersama kami.</string>
+
 </resources>

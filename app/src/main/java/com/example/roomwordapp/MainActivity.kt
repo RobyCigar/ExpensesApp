@@ -37,17 +37,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
-//        super.onCreate(savedInstanceState)
+
 
         setSupportActionBar(Toolbar(this))
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        openSomeActivityForResult(LoginActivity::class.java)
+
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main2)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(

@@ -6,4 +6,59 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+        <!-- Gray shades -->
+        <color name="gray_100">#f7fafc</color>
+        <color name="gray_200">#edf2f7</color>
+        <color name="gray_300">#e2e8f0</color>
+        <color name="gray_400">#cbd5e0</color>
+        <color name="gray_500">#a0aec0</color>
+        <color name="gray_600">#718096</color>
+        <color name="gray_700">#4a5568</color>
+        <color name="gray_800">#2d3748</color>
+        <color name="gray_900">#1a202c</color>
+
+        <!-- Red shades -->
+        <color name="red_100">#fff5f5</color>
+        <color name="red_200">#fed7d7</color>
+        <color name="red_300">#feb2b2</color>
+        <color name="red_400">#fc8181</color>
+        <color name="red_500">#f56565</color>
+        <color name="red_600">#e53e3e</color>
+        <color name="red_700">#c53030</color>
+        <color name="red_800">#9b2c2c</color>
+        <color name="red_900">#742a2a</color>
+
+        <!-- Blue shades -->
+        <color name="blue_100">#ebf8ff</color>
+        <color name="blue_200">#bee3f8</color>
+        <color name="blue_300">#90cdf4</color>
+        <color name="blue_400">#63b3ed</color>
+        <color name="blue_500">#4299e1</color>
+        <color name="blue_600">#3182ce</color>
+        <color name="blue_700">#2b6cb0</color>
+        <color name="blue_800">#2c5282</color>
+        <color name="blue_900">#2a4365</color>
+
+        <!-- Green shades -->
+        <color name="green_100">#f0fff4</color>
+        <color name="green_200">#c6f6d5</color>
+        <color name="green_300">#9ae6b4</color>
+        <color name="green_400">#68d391</color>
+        <color name="green_500">#48bb78</color>
+        <color name="green_600">#38a169</color>
+        <color name="green_700">#2f855a</color>
+        <color name="green_800">#276749</color>
+        <color name="green_900">#22543d</color>
+
+        <!-- Yellow shades -->
+        <color name="yellow_100">#fffff0</color>
+        <color name="yellow_200">#fefcbf</color>
+        <color name="yellow_300">#faf089</color>
+        <color name="yellow_400">#f6e05e</color>
+        <color name="yellow_500">#ecc94b</color>
+        <color name="yellow_600">#d69e2e</color>
+        <color name="yellow_700">#b7791f</color>
+        <color name="yellow_800">#975a16</color>
+        <color name="yellow_900">#744210</color>
+
 </resources>

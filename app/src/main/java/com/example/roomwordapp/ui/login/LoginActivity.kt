@@ -1,6 +1,7 @@
 package com.example.roomwordapp.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import com.example.roomwordapp.MainActivity
 import com.example.roomwordapp.databinding.ActivityLoginBinding
 
 import com.example.roomwordapp.R
@@ -57,7 +59,9 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+//                updateUiWithUser(loginResult.success)
             }
             setResult(Activity.RESULT_OK)
 

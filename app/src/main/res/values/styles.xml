@@ -17,4 +17,14 @@
         <item name="android:background">@android:color/holo_orange_light</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
+
+    <style name="onboarding_h" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="onboarding_p" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/gray_500</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

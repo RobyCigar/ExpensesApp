@@ -1,6 +1,7 @@
 package com.example.roomwordapp
 
 import android.app.Application
+import com.example.roomwordapp.data.datasource.WordRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
