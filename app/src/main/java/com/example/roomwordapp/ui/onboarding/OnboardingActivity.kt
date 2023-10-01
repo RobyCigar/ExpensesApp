@@ -16,12 +16,16 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var adapter: OnboardingPagerAdapter
     private lateinit var btnSkip: Button
     private lateinit var btnNext: Button
-    private val layouts = intArrayOf(R.layout.onboarding_screen1, R.layout.onboarding_screen2, R.layout.onboarding_screen3)
+    private val layouts = intArrayOf(
+        R.layout.onboarding_screen1,
+        R.layout.onboarding_screen2,
+        R.layout.onboarding_screen3
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
-
+//      deleteSharedPreferences("MyPrefs")
         viewPager = findViewById(R.id.viewPager)
         btnSkip = findViewById(R.id.btnSkip)
         btnNext = findViewById(R.id.btnNext)

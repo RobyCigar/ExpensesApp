@@ -4,38 +4,51 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.roomwordapp.User
+import com.example.roomwordapp.data.dao.AccountDao
+import com.example.roomwordapp.data.dao.CategoryDao
+import com.example.roomwordapp.data.dao.LedgerDao
+import com.example.roomwordapp.data.entity.User
 import com.example.roomwordapp.data.dao.UserDao
-import com.example.roomwordapp.Word
+import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.dao.WordDao
+import com.example.roomwordapp.data.entity.Account
+import com.example.roomwordapp.data.entity.Category
+import com.example.roomwordapp.data.entity.Ledger
+import com.example.roomwordapp.util.DateConverter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Word::class, User::class], version = 3, exportSchema = false)
-public abstract class WordRoomDatabase : RoomDatabase() {
+@TypeConverters(DateConverter::class)
+@Database(entities = [Word::class, User::class, Account::class, Category::class, Ledger::class], version = 5, exportSchema = false)
+public abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
     abstract fun userDao(): UserDao
+    abstract fun  accountDao(): AccountDao
+    abstract fun  categoryDao(): CategoryDao
+    abstract fun  ledgerDao(): LedgerDao
+
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
         // same time.
         @Volatile
-        private var INSTANCE: WordRoomDatabase? = null
+        private var INSTANCE: AppRoomDatabase? = null
 
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
-        ): WordRoomDatabase {
+        ): AppRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    WordRoomDatabase::class.java,
-                    "word_database"
+                    AppRoomDatabase::class.java,
+                    "app_database"
                 )
                     .addCallback(WordDatabaseCallback(scope))
                     .fallbackToDestructiveMigration()

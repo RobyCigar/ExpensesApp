@@ -1,6 +1,7 @@
 package com.example.roomwordapp.ui.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roomwordapp.data.viewmodel.WordViewModel
 import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
-import com.example.roomwordapp.WordsApplication
+import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -28,10 +29,6 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val appCtx = activity
-        val dashboardViewModel =
-            ViewModelProvider(this)[DashboardViewModel::class.java]
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -50,7 +47,7 @@ class DashboardFragment : Fragment() {
         return root
     }
     private val wordViewModel: WordViewModel by viewModels {
-        WordViewModelFactory((activity?.application as WordsApplication).repository)
+        WordViewModelFactory((activity?.application as MainApplication).repository)
     }
 
     override fun onDestroyView() {

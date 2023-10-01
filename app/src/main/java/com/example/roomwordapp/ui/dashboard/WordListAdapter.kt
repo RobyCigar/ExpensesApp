@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordapp.R
-import com.example.roomwordapp.Word
-import com.example.roomwordapp.WordsApplication
+import com.example.roomwordapp.data.entity.Word
+import com.example.roomwordapp.MainApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -45,7 +45,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
         holder.btnDelete.setOnClickListener {
             GlobalScope.launch {
-                currentList[position].id?.let { it1 -> WordsApplication().database.wordDao().deleteByUserId(id = it1) }
+                currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
             }
         }
 
