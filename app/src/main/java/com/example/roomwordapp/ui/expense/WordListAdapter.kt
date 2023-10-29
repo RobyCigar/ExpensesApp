@@ -42,7 +42,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         val current = getItem(position)
         this.position = holder.adapterPosition
 
-        holder.bind(current.word)
+        holder.bind(current.title)
         val item = currentList[position]
 
 
@@ -78,7 +78,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         }
 
         override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
-            return oldItem.word == newItem.word
+            return oldItem.title == newItem.title
         }
     }
 

@@ -10,15 +10,18 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WordDao {
 
-    @Query("SELECT * FROM word_table ORDER BY word ASC")
+    @Query("SELECT * FROM expenses ORDER BY title ASC")
     fun getAlphabetizedWords(): Flow<List<Word>>
+
+    @Query("SELECT * FROM expenses WHERE id = :id")
+    fun getWord(id: Int): Flow<Word>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
 
-    @Query("DELETE FROM word_table")
+    @Query("DELETE FROM expenses")
     fun deleteAll(): Int
 
-    @Query("DELETE FROM word_table WHERE id = :id")
+    @Query("DELETE FROM expenses WHERE id = :id")
     fun deleteByUserId(id: Int)
 }

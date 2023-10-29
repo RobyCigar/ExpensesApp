@@ -46,5 +46,10 @@
 
     <string name="onboarding_screen3_title">Lihat Analisis Keuangan yang Mendalam</string>
     <string name="onboarding_screen3_description">Dapatkan wawasan mendalam tentang kinerja keuangan bisnis Anda. Analisis yang cermat membantu Anda membuat keputusan yang tepat. Mulai manajemen keuangan yang lebih cerdas bersama kami.</string>
-
+    <string-array name="feelings">
+        <item>Jajan</item>
+        <item>Investasi</item>
+        <item>Sedekah</item>
+        <item>Lain-lain</item>
+    </string-array>
 </resources>

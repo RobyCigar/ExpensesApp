@@ -77,9 +77,9 @@ class HomeFragment : Fragment() {
 
     private fun generateCardData(): List<CardData> {
         val cardList = mutableListOf<CardData>()
-        cardList.add(CardData("Card 1", "Description for Card 1"))
-        cardList.add(CardData("Card 2", "Description for Card 2"))
-        cardList.add(CardData("Card 3", "Description for Card 3"))
+        cardList.add(CardData("Pengeluaran", "Description for Card 1"))
+        cardList.add(CardData("Pemasukan", "Description for Card 2"))
+        cardList.add(CardData("Kategori", "Description for Card 3"))
         // Add more cards as needed
         return cardList
     }

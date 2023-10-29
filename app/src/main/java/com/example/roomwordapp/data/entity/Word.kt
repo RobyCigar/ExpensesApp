@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "word_table")
+@Entity(tableName = "expenses")
 class Word(
     @PrimaryKey(autoGenerate = true) val id: Int?= null,
-    @ColumnInfo(name = "word") val word: String
+    @ColumnInfo(name = "title") val title: String? = "",
+    @ColumnInfo(name = "description") val description: String? = "",
+    @ColumnInfo(name = "amount") val amount: Int? = 0,
 )

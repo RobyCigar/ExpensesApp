@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             // There are no request codes
             val data: Intent? = result.data
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
-                val word = Word(id = 10, word = it)
+                val word = Word(id = 10, title = it)
                 wordViewModel.insert(word)
             }
         }

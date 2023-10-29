@@ -9,11 +9,13 @@ import com.example.roomwordapp.data.entity.User
 import com.example.roomwordapp.data.dao.UserDao
 import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.dao.WordDao
+import com.example.roomwordapp.data.entity.Account
+import com.example.roomwordapp.data.entity.Category
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Word::class, User::class], version = 3, exportSchema = false)
+@Database(entities = [Word::class, User::class, Category::class, Account::class], version = 10, exportSchema = false)
 public abstract class WordRoomDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
@@ -63,6 +65,7 @@ public abstract class WordRoomDatabase : RoomDatabase() {
                 // Delete all content here.
                 wordDao.deleteAll()
                 // TODO: Add your own words!
+//                wordDao.insert(Word(word = "test", title = "Mekdi", description = "Makan siang", amount = 100000))
             }
         }
     }
