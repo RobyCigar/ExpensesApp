@@ -1,4 +1,4 @@
-package com.example.roomwordapp.ui.dashboard
+package com.example.roomwordapp.ui.expense
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

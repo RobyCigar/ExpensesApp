@@ -1,13 +1,7 @@
-package com.example.roomwordapp.ui.dashboard
+package com.example.roomwordapp.ui.expense
 
 import android.os.Bundle
-import android.util.Log
-import android.view.ActionMode
-import android.view.ActionMode.Callback
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -15,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roomwordapp.MainApplication
-import com.example.roomwordapp.R
 import com.example.roomwordapp.data.viewmodel.WordViewModel
 import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.databinding.FragmentDashboardBinding
@@ -45,15 +38,12 @@ class DashboardFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
 
-
         wordViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
             // Update the cached copy of the words in the adapter.
             words?.let {
                 adapter?.submitList(it)
             }
         })
-
-
 
         return root
     }

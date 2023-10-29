@@ -7,10 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.roomwordapp.MainApplication
+import com.example.roomwordapp.data.viewmodel.WordViewModel
+import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.databinding.FragmentHomeBinding
+import com.example.roomwordapp.ui.expense.WordListAdapter
 
 class HomeFragment : Fragment() {
 
@@ -43,7 +49,25 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
         }
+
+        val recyclerViewVertical = binding.rvExpenses
+        val adapterVertical = context?.let { WordListAdapter(it) }
+        recyclerViewVertical.adapter = adapterVertical
+        recyclerViewVertical.layoutManager = LinearLayoutManager(context)
+
+
+        wordViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
+            // Update the cached copy of the words in the adapter.
+            words?.let {
+                adapterVertical?.submitList(it)
+            }
+        })
+
         return root
+    }
+
+    private val wordViewModel: WordViewModel by viewModels {
+        WordViewModelFactory((activity?.application as MainApplication).repository)
     }
 
     override fun onDestroyView() {

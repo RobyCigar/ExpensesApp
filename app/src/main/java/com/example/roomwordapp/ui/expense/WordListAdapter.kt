@@ -1,8 +1,7 @@
-package com.example.roomwordapp.ui.dashboard
+package com.example.roomwordapp.ui.expense
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
@@ -24,6 +23,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
     WordsComparator()
 ) {
 
+    private var position: Int =  0
     private var actionMode: ActionMode? = null
 
     interface OnItemClickListener {
@@ -40,6 +40,8 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
+        this.position = holder.adapterPosition
+
         holder.bind(current.word)
         val item = currentList[position]
 
@@ -53,28 +55,10 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
             true
         }
 
-        // Handle edit button click
-        holder.fab.setOnClickListener {
-            val intent = Intent(context, NewWordActivity::class.java)
-            intent.putExtra("word", item.toString())
-            context.startActivity(intent)
-            listener?.onItemClick(item)
-        }
-
-        holder.btnDelete.setOnClickListener {
-            GlobalScope.launch {
-                currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
-            }
-        }
-
     }
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.textView)
-        val fab: View = itemView.findViewById(R.id.buttonEdit)
-        val btnDelete: View = itemView.findViewById(R.id.buttonDelete)
-
-
         fun bind(text: String?) {
             wordItemView.text = text
         }
@@ -113,6 +97,22 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         }
 
         override fun onActionItemClicked(mode: ActionMode?, item: MenuItem): Boolean {
+            val currItem = currentList[position]
+
+            if(item.itemId == R.id.action_edit) {
+                val intent = Intent(context, NewWordActivity::class.java)
+                intent.putExtra("word", item.toString())
+                context.startActivity(intent)
+                listener?.onItemClick(currItem)
+            } else if(item.itemId == R.id.action_delete) {
+                GlobalScope.launch {
+                    currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
+                }
+            }
+
+
+
+
             return when (item.itemId) {
                 R.id.action_edit ->                     // Handle the edit action
                     true

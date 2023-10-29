@@ -24,7 +24,7 @@ import com.example.roomwordapp.data.entity.Word
 import com.example.roomwordapp.data.viewmodel.WordViewModel
 import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
 import com.example.roomwordapp.databinding.ActivityMainBinding
-import com.example.roomwordapp.ui.dashboard.NewWordActivity
+import com.example.roomwordapp.ui.expense.NewWordActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.random.Random
 
@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         setSupportActionBar(Toolbar(this))
         supportActionBar?.title = "Expenses App"

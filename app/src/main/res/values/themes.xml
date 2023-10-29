@@ -9,7 +9,7 @@
 
     <style name="Theme.RoomWordApp" parent="Base.Theme.RoomWordApp" />
     <style name="Theme.SplashScreen" parent="Base.Theme.RoomWordApp">
-
+        
     </style>
 
 </resources>
