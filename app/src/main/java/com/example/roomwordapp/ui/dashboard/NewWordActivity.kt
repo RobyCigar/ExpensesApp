@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.roomwordapp.R
 import com.example.roomwordapp.data.entity.Word
-import com.example.roomwordapp.WordsApplication
+import com.example.roomwordapp.MainApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,12 +24,11 @@ class NewWordActivity : AppCompatActivity() {
         editWordView = findViewById(R.id.edit_word)
         val receivedData = intent.getStringExtra("word")
 
-        Log.d("DATA", receivedData.toString())
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val text = editWordView.text.toString()
             GlobalScope.launch {
-                WordsApplication().database.wordDao().insert(Word(word = text))
+                MainApplication().database.wordDao().insert(Word(word = text))
             }
             val replyIntent = Intent()
             if (TextUtils.isEmpty(editWordView.text)) {

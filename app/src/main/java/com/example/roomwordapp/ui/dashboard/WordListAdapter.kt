@@ -2,22 +2,30 @@ package com.example.roomwordapp.ui.dashboard
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.view.ActionMode
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.R
 import com.example.roomwordapp.data.entity.Word
-import com.example.roomwordapp.WordsApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class WordListAdapter(private val context: Context) : ListAdapter<Word, WordListAdapter.WordViewHolder>(
     WordsComparator()
 ) {
+
+    private var actionMode: ActionMode? = null
+
     interface OnItemClickListener {
         fun onItemClick(data: Word)
     }
@@ -35,6 +43,16 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         holder.bind(current.word)
         val item = currentList[position]
 
+
+        holder.itemView.setOnLongClickListener { view: View ->
+
+            if (actionMode == null) {
+                actionMode = view.startActionMode(actionModeCallback)
+                view.isSelected = true
+            }
+            true
+        }
+
         // Handle edit button click
         holder.fab.setOnClickListener {
             val intent = Intent(context, NewWordActivity::class.java)
@@ -45,7 +63,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
         holder.btnDelete.setOnClickListener {
             GlobalScope.launch {
-                currentList[position].id?.let { it1 -> WordsApplication().database.wordDao().deleteByUserId(id = it1) }
+                currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
             }
         }
 
@@ -77,6 +95,37 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
         override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
             return oldItem.word == newItem.word
+        }
+    }
+
+
+//    ACTION MODE
+    private val actionModeCallback: ActionMode.Callback = object : ActionMode.Callback {
+        override fun onCreateActionMode(mode: ActionMode, menu: Menu?): Boolean {
+            val inflater: MenuInflater = mode.menuInflater
+            mode.title = "Aksi"
+            inflater.inflate(R.menu.contextual_menu, menu)
+            return true
+        }
+
+        override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+            return false
+        }
+
+        override fun onActionItemClicked(mode: ActionMode?, item: MenuItem): Boolean {
+            return when (item.itemId) {
+                R.id.action_edit ->                     // Handle the edit action
+                    true
+
+                R.id.action_delete ->                     // Handle the delete action
+                    true
+
+                else -> false
+            }
+        }
+
+        override fun onDestroyActionMode(mode: ActionMode?) {
+            actionMode = null
         }
     }
 }

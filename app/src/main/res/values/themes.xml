@@ -2,11 +2,14 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.RoomWordApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
     <style name="Theme.RoomWordApp" parent="Base.Theme.RoomWordApp" />
     <style name="Theme.SplashScreen" parent="Base.Theme.RoomWordApp">
 
     </style>
+
 </resources>
