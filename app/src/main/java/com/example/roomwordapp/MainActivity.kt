@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setSupportActionBar(Toolbar(this))
         supportActionBar?.title = "Expenses App"
         binding = ActivityMainBinding.inflate(layoutInflater)

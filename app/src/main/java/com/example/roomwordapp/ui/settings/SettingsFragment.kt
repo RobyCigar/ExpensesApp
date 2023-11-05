@@ -1,6 +1,7 @@
 package com.example.roomwordapp.ui.settings
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.roomwordapp.databinding.FragmentSettingsBinding
+import com.example.roomwordapp.ui.login.LoginActivity
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
@@ -79,6 +81,11 @@ class NotificationsFragment : Fragment() {
         val activity = requireActivity()
         paymentsClient = createPaymentsClient(activity)
 
+
+        binding.btnLogout.setOnClickListener {
+            launchLoginScreen()
+        }
+
         return root
     }
 
@@ -148,6 +155,13 @@ class NotificationsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun launchLoginScreen() {
+        // Add code to navigate to the home screen or the next activity after onboarding
+        // For simplicity, we'll just finish this activity
+        val intent = Intent(context, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
 

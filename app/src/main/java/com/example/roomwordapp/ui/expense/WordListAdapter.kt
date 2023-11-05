@@ -42,7 +42,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         val current = getItem(position)
         this.position = holder.adapterPosition
 
-        holder.bind(current.title)
+        holder.bind(current)
         val item = currentList[position]
 
 
@@ -59,8 +59,13 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.textView)
-        fun bind(text: String?) {
-            wordItemView.text = text
+        private val description: TextView = itemView.findViewById(R.id.textDescription)
+        private val amount: TextView = itemView.findViewById(R.id.textAmount)
+
+        fun bind(expense: Word) {
+            wordItemView.text = expense.title
+            description.text = expense?.description
+            amount.text = expense?.amount.toString()
         }
 
         companion object {
@@ -109,10 +114,6 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
                     currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
                 }
             }
-
-
-
-
             return when (item.itemId) {
                 R.id.action_edit ->                     // Handle the edit action
                     true
