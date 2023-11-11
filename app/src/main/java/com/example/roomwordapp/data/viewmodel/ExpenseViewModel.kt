@@ -5,31 +5,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.roomwordapp.data.entity.Word
-import com.example.roomwordapp.data.repository.WordRepository
+import com.example.roomwordapp.data.entity.Expense
+import com.example.roomwordapp.data.repository.ExpenseRepository
 import kotlinx.coroutines.launch
 
-class WordViewModel(private val repository: WordRepository) : ViewModel() {
+class ExpenseViewModel(private val repository: ExpenseRepository) : ViewModel() {
 
     // Using LiveData and caching what allWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
-    val allWords: LiveData<List<Word>> = repository.allWords.asLiveData()
+    val allWords: LiveData<List<Expense>> = repository.allWords.asLiveData()
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(word: Word) = viewModelScope.launch {
-        repository.insert(word)
+    fun insert(expense: Expense) = viewModelScope.launch {
+        repository.insert(expense)
     }
 }
 
-class WordViewModelFactory(private val repository: WordRepository) : ViewModelProvider.Factory {
+class ExpenseViewModelFactory(private val repository: ExpenseRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(WordViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(ExpenseViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return WordViewModel(repository) as T
+            return ExpenseViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

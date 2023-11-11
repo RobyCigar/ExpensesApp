@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordapp.MainApplication
-import com.example.roomwordapp.data.viewmodel.WordViewModel
-import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.example.roomwordapp.databinding.FragmentHomeBinding
 import com.example.roomwordapp.ui.expense.WordListAdapter
 
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         recyclerViewVertical.layoutManager = LinearLayoutManager(context)
 
 
-        wordViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
+        expenseViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
             // Update the cached copy of the words in the adapter.
             words?.let {
                 adapterVertical?.submitList(it)
@@ -66,8 +66,8 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private val wordViewModel: WordViewModel by viewModels {
-        WordViewModelFactory((activity?.application as MainApplication).repository)
+    private val expenseViewModel: ExpenseViewModel by viewModels {
+        ExpenseViewModelFactory((activity?.application as MainApplication).repository)
     }
 
     override fun onDestroyView() {

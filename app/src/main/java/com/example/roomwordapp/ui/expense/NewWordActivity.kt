@@ -12,7 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import com.example.roomwordapp.R
-import com.example.roomwordapp.data.entity.Word
+import com.example.roomwordapp.data.entity.Expense
 import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.databinding.ActivityNewWordBinding
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -38,10 +38,9 @@ class NewWordActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button_save)
 
         button.setOnClickListener {
-            val word = Word(title = editWordView.text.toString(), description = description.text.toString(), amount = amount.text.toString().toInt())
+            val word = Expense(title = editWordView.text.toString(), description = description.text.toString(), amount = amount.text.toString().toInt())
             GlobalScope.launch {
-                Log.d("INPUT", word.toString())
-                MainApplication().database.wordDao().insert(word)
+                MainApplication().database.expenseDao().insert(word)
             }
             val replyIntent = Intent()
             if (TextUtils.isEmpty(editWordView.text)) {

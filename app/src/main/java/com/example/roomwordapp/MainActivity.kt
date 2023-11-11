@@ -20,12 +20,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.roomwordapp.data.entity.Word
-import com.example.roomwordapp.data.viewmodel.WordViewModel
-import com.example.roomwordapp.data.viewmodel.WordViewModelFactory
+import com.example.roomwordapp.data.entity.Category
+import com.example.roomwordapp.data.entity.Expense
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.example.roomwordapp.databinding.ActivityMainBinding
 import com.example.roomwordapp.ui.expense.NewWordActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +37,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         setSupportActionBar(Toolbar(this))
         supportActionBar?.title = "Expenses App"
@@ -132,13 +134,13 @@ class MainActivity : AppCompatActivity() {
             // There are no request codes
             val data: Intent? = result.data
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
-                val word = Word(id = 10, title = it)
-                wordViewModel.insert(word)
+                val word = Expense(id = 10, title = it)
+                expenseViewModel.insert(word)
             }
         }
     }
 
-    private val wordViewModel: WordViewModel by viewModels {
-        WordViewModelFactory((application as MainApplication).repository)
+    private val expenseViewModel: ExpenseViewModel by viewModels {
+        ExpenseViewModelFactory((application as MainApplication).repository)
     }
 }

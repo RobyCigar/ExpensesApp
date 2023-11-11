@@ -5,21 +5,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.roomwordapp.data.dao.AccountDao
+import com.example.roomwordapp.data.dao.CategoryDao
 import com.example.roomwordapp.data.entity.User
 import com.example.roomwordapp.data.dao.UserDao
-import com.example.roomwordapp.data.entity.Word
-import com.example.roomwordapp.data.dao.WordDao
+import com.example.roomwordapp.data.entity.Expense
+import com.example.roomwordapp.data.dao.ExpenseDao
 import com.example.roomwordapp.data.entity.Account
 import com.example.roomwordapp.data.entity.Category
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Word::class, User::class, Category::class, Account::class], version = 10, exportSchema = false)
+@Database(entities = [Expense::class, User::class, Category::class, Account::class], version = 11, exportSchema = false)
 public abstract class WordRoomDatabase : RoomDatabase() {
 
-    abstract fun wordDao(): WordDao
+    abstract fun expenseDao(): ExpenseDao
     abstract fun userDao(): UserDao
+    abstract fun categoryDao(): CategoryDao
+    abstract fun accountDao(): AccountDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -56,16 +60,14 @@ public abstract class WordRoomDatabase : RoomDatabase() {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     scope.launch {
-                        populateDatabase(database.wordDao())
+                        populateDatabase(database.expenseDao())
                     }
                 }
             }
 
-            suspend fun populateDatabase(wordDao: WordDao) {
+            suspend fun populateDatabase(expenseDao: ExpenseDao) {
                 // Delete all content here.
-                wordDao.deleteAll()
-                // TODO: Add your own words!
-//                wordDao.insert(Word(word = "test", title = "Mekdi", description = "Makan siang", amount = 100000))
+                expenseDao.deleteAll()
             }
         }
     }

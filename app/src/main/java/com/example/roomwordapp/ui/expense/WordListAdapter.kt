@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.R
-import com.example.roomwordapp.data.entity.Word
+import com.example.roomwordapp.data.entity.Expense
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class WordListAdapter(private val context: Context) : ListAdapter<Word, WordListAdapter.WordViewHolder>(
+class WordListAdapter(private val context: Context) : ListAdapter<Expense, WordListAdapter.WordViewHolder>(
     WordsComparator()
 ) {
 
@@ -27,7 +27,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
     private var actionMode: ActionMode? = null
 
     interface OnItemClickListener {
-        fun onItemClick(data: Word)
+        fun onItemClick(data: Expense)
     }
     private var listener: OnItemClickListener? = null
 
@@ -62,7 +62,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         private val description: TextView = itemView.findViewById(R.id.textDescription)
         private val amount: TextView = itemView.findViewById(R.id.textAmount)
 
-        fun bind(expense: Word) {
+        fun bind(expense: Expense) {
             wordItemView.text = expense.title
             description.text = expense?.description
             amount.text = expense?.amount.toString()
@@ -77,12 +77,12 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
         }
     }
 
-    class WordsComparator : DiffUtil.ItemCallback<Word>() {
-        override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
+    class WordsComparator : DiffUtil.ItemCallback<Expense>() {
+        override fun areItemsTheSame(oldItem: Expense, newItem: Expense): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
+        override fun areContentsTheSame(oldItem: Expense, newItem: Expense): Boolean {
             return oldItem.title == newItem.title
         }
     }
@@ -111,7 +111,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Word, WordList
                 listener?.onItemClick(currItem)
             } else if(item.itemId == R.id.action_delete) {
                 GlobalScope.launch {
-                    currentList[position].id?.let { it1 -> MainApplication().database.wordDao().deleteByUserId(id = it1) }
+                    currentList[position].id?.let { it1 -> MainApplication().database.expenseDao().deleteByUserId(id = it1) }
                 }
             }
             return when (item.itemId) {
