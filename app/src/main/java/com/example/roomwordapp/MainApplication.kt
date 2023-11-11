@@ -2,9 +2,11 @@ package com.example.roomwordapp
 
 import android.app.Application
 import com.example.roomwordapp.data.datasource.WordRoomDatabase
+import com.example.roomwordapp.data.repository.CategoryRepository
 import com.example.roomwordapp.data.repository.ExpenseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import java.util.Locale.Category
 
 class MainApplication : Application() {
     // No need to cancel this scope as it'll be torn down with the process
@@ -14,4 +16,6 @@ class MainApplication : Application() {
     // rather than when the application starts
     val database by lazy { WordRoomDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { ExpenseRepository(database.expenseDao()) }
+    val categoryRepository by lazy { CategoryRepository(database.categoryDao()) }
+
 }

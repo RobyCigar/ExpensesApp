@@ -37,7 +37,7 @@
             android:name=".MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.expense.NewWordActivity"
+            android:name=".ui.expense.CreateExpenseActivity"
             android:exported="false" />
     </application>
 

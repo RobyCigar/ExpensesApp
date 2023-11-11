@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,7 +15,7 @@ import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.example.roomwordapp.databinding.FragmentHomeBinding
-import com.example.roomwordapp.ui.expense.WordListAdapter
+import com.example.roomwordapp.ui.expense.ExpenseListAdapter
 
 class HomeFragment : Fragment() {
 
@@ -51,7 +50,7 @@ class HomeFragment : Fragment() {
         }
 
         val recyclerViewVertical = binding.rvExpenses
-        val adapterVertical = context?.let { WordListAdapter(it) }
+        val adapterVertical = context?.let { ExpenseListAdapter(it) }
         recyclerViewVertical.adapter = adapterVertical
         recyclerViewVertical.layoutManager = LinearLayoutManager(context)
 

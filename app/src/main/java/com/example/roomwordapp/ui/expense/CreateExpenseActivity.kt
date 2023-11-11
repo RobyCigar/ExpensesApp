@@ -6,36 +6,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.roomwordapp.R
 import com.example.roomwordapp.data.entity.Expense
 import com.example.roomwordapp.MainApplication
-import com.example.roomwordapp.databinding.ActivityNewWordBinding
+import com.example.roomwordapp.data.entity.Category
+import com.example.roomwordapp.data.viewmodel.CategoryViewModel
+import com.example.roomwordapp.data.viewmodel.CategoryViewModelFactory
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
+import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class NewWordActivity : AppCompatActivity() {
+class CreateExpenseActivity : AppCompatActivity() {
 
     private lateinit var editWordView: EditText
-    private lateinit var binding: ActivityNewWordBinding
 
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNewWordBinding.inflate(layoutInflater)
 
-        setContentView(R.layout.activity_new_word)
+        setContentView(R.layout.activity_create_expense)
         editWordView = findViewById(R.id.edit_word)
-        val receivedData = intent.getStringExtra("word")
         val description = findViewById<TextInputEditText>(R.id.inputDescription)
         val amount = findViewById<TextInputEditText>(R.id.inputAmount)
         val button = findViewById<Button>(R.id.button_save)
+        val dropdown = findViewById<MaterialAutoCompleteTextView>(R.id.dropdownTextView)
 
         button.setOnClickListener {
             val word = Expense(title = editWordView.text.toString(), description = description.text.toString(), amount = amount.text.toString().toInt())
@@ -52,10 +54,18 @@ class NewWordActivity : AppCompatActivity() {
             }
             finish()
         }
+        categoryViewModel.allCategories.observe(this, Observer { categories ->
+            // Update the cached copy of the words in the adapter.
+            val namesArray = categories.map { it.name }.toTypedArray()
 
-        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4")
-        val adapter = ArrayAdapter(this, R.layout.list_item, items)
-        binding.autoCompleteTextView.setAdapter(adapter)
+            dropdown.setSimpleItems(namesArray)
+            categories?.let {
+                Log.d("Category", it.toString())
+            }
+        })
+    }
+    private val categoryViewModel: CategoryViewModel by viewModels {
+        CategoryViewModelFactory((this.application as MainApplication).categoryRepository)
     }
 
     companion object {

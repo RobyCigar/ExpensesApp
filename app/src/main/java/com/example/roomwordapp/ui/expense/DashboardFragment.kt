@@ -33,7 +33,7 @@ class DashboardFragment : Fragment() {
 
 
         val recyclerView = binding.recyclerview
-        val adapter = context?.let { WordListAdapter(it) }
+        val adapter = context?.let { ExpenseListAdapter(it) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 

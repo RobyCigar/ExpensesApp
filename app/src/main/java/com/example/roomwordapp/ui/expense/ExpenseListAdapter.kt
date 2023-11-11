@@ -19,7 +19,7 @@ import com.example.roomwordapp.data.entity.Expense
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class WordListAdapter(private val context: Context) : ListAdapter<Expense, WordListAdapter.WordViewHolder>(
+class ExpenseListAdapter(private val context: Context) : ListAdapter<Expense, ExpenseListAdapter.WordViewHolder>(
     WordsComparator()
 ) {
 
@@ -105,7 +105,7 @@ class WordListAdapter(private val context: Context) : ListAdapter<Expense, WordL
             val currItem = currentList[position]
 
             if(item.itemId == R.id.action_edit) {
-                val intent = Intent(context, NewWordActivity::class.java)
+                val intent = Intent(context, CreateExpenseActivity::class.java)
                 intent.putExtra("word", item.toString())
                 context.startActivity(intent)
                 listener?.onItemClick(currItem)

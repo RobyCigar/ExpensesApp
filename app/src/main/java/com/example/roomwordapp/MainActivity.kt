@@ -20,15 +20,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.roomwordapp.data.entity.Category
 import com.example.roomwordapp.data.entity.Expense
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.example.roomwordapp.databinding.ActivityMainBinding
-import com.example.roomwordapp.ui.expense.NewWordActivity
+import com.example.roomwordapp.ui.expense.CreateExpenseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -78,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     private fun fabSetup() {
         val fab: View = binding.fab
         fab.setOnClickListener {
-            this.openSomeActivityForResult(NewWordActivity::class.java)
+            this.openSomeActivityForResult(CreateExpenseActivity::class.java)
         }
     }
 
@@ -133,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK) {
             // There are no request codes
             val data: Intent? = result.data
-            data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
+            data?.getStringExtra(CreateExpenseActivity.EXTRA_REPLY)?.let {
                 val word = Expense(id = 10, title = it)
                 expenseViewModel.insert(word)
             }
