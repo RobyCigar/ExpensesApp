@@ -7,5 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.RoomWordApp" parent="Base.Theme.RoomWordApp" />
+    <style name="Theme.RoomWordApp" parent="Base.Theme.RoomWordApp" >
+
+    </style>
 </resources>
