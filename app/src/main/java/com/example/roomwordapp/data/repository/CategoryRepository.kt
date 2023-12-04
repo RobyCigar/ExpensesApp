@@ -20,7 +20,7 @@ class CategoryRepository(private val categoryDao: CategoryDao) {
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(word: Category) {
-        categoryDao.insert(word)
+    suspend fun insert(category: Category) {
+        categoryDao.insert(category)
     }
 }

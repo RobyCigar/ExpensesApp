@@ -2,6 +2,7 @@ package com.example.roomwordapp.ui.settings
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.roomwordapp.databinding.FragmentSettingsBinding
 import com.example.roomwordapp.ui.login.LoginActivity
+import com.example.roomwordapp.ui.onboarding.OnboardingActivity
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
@@ -83,8 +85,10 @@ class NotificationsFragment : Fragment() {
 
 
         binding.btnLogout.setOnClickListener {
-            launchLoginScreen()
+            launchOnboardingScreen()
         }
+//      Chart
+
 
         return root
     }
@@ -157,10 +161,11 @@ class NotificationsFragment : Fragment() {
         _binding = null
     }
 
-    private fun launchLoginScreen() {
+    private fun launchOnboardingScreen() {
         // Add code to navigate to the home screen or the next activity after onboarding
         // For simplicity, we'll just finish this activity
-        val intent = Intent(context, LoginActivity::class.java)
+        context?.getSharedPreferences("MyPrefs", 0)?.edit()?.clear()?.commit()
+        val intent = Intent(context, OnboardingActivity::class.java)
         startActivity(intent)
     }
 }

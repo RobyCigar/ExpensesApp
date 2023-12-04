@@ -9,9 +9,12 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.widget.ShareActionProvider
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -30,16 +33,20 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
-    private val channelId = generateRandomString(10)
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(Toolbar(this))
-        supportActionBar?.title = "Expenses App"
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+        val toolbar: Toolbar = findViewById(R.id.my_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
         val navView: BottomNavigationView = binding.navView
 
@@ -57,19 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         fabSetup()
 
-        createNotificationChannel()
 
-//        val button = findViewById<Button>(R.id.notificationBtn)
-//        button.setOnClickListener {
-//            showNotification()
-//        }
-    }
-    private fun generateRandomString(length: Int): String {
-        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') // Define the character pool
-        return (1..length)
-            .map { Random.nextInt(0, charPool.size) }
-            .map(charPool::get)
-            .joinToString("")
     }
 
     private fun fabSetup() {
@@ -79,47 +74,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "My Channel Name"
-            val descriptionText = "My Channel Description"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
 
-            val channel = NotificationChannel(channelId, name, importance).apply {
-                description = descriptionText
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                // Handle share action here
+                // Example: launch a share intent
+                val sendIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "Sharing this content.")
+                    type = "text/plain"
+                }
+                startActivity(sendIntent)
+                true
             }
-
-            val notificationManager =
-                getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
+            else -> super.onOptionsItemSelected(item)
         }
     }
-
-    private fun showNotification() {
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.baseline_notifications_24)
-            .setContentTitle("My Notification Title")
-            .setContentText("This is the notification message.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-        val notificationManager = NotificationManagerCompat.from(this)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        notificationManager.notify(1, notificationBuilder.build())
-    }
-
     private fun openSomeActivityForResult(activityName: Class<*>) {
         val intent = Intent(this, activityName)
 

@@ -1,8 +1,11 @@
 package com.example.roomwordapp.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -15,6 +18,8 @@ import com.example.roomwordapp.MainApplication
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModel
 import com.example.roomwordapp.data.viewmodel.ExpenseViewModelFactory
 import com.example.roomwordapp.databinding.FragmentHomeBinding
+import com.example.roomwordapp.ui.category.CreateCategoryActivity
+import com.example.roomwordapp.ui.expense.CreateExpenseActivity
 import com.example.roomwordapp.ui.expense.ExpenseListAdapter
 
 class HomeFragment : Fragment() {
@@ -44,7 +49,6 @@ class HomeFragment : Fragment() {
         val adapter = CardAdapter(cardList)
         recyclerView.adapter = adapter
 
-//        val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
         }
@@ -76,9 +80,9 @@ class HomeFragment : Fragment() {
 
     private fun generateCardData(): List<CardData> {
         val cardList = mutableListOf<CardData>()
-        cardList.add(CardData("Pengeluaran", "Description for Card 1"))
-        cardList.add(CardData("Pemasukan", "Description for Card 2"))
-        cardList.add(CardData("Kategori", "Description for Card 3"))
+        cardList.add(CardData("Pengeluaran", "Kelola data pengeluaran", destination = Intent(context, CreateExpenseActivity::class.java)))
+        cardList.add(CardData("Pemasukan", "Kelola data pemasukan", destination = Intent(context, CreateExpenseActivity::class.java)))
+        cardList.add(CardData("Kategori", "Kelola kategori transaksi", destination = Intent(context, CreateCategoryActivity::class.java)))
         // Add more cards as needed
         return cardList
     }

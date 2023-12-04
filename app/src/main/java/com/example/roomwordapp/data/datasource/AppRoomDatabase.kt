@@ -17,7 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Expense::class, User::class, Category::class, Account::class], version = 11, exportSchema = false)
+@Database(entities = [Expense::class, User::class, Category::class, Account::class], version = 12, exportSchema = false)
 public abstract class WordRoomDatabase : RoomDatabase() {
 
     abstract fun expenseDao(): ExpenseDao

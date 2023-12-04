@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Category(
-    @PrimaryKey(autoGenerate = true) val id: Long,      // Unique identifier for the category
+    @PrimaryKey(autoGenerate = true) val id: Long?,      // Unique identifier for the category
     val name: String    // Name of the category (e.g., "Food", "Transportation", etc.)
 )

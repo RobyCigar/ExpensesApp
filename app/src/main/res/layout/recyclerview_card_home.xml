@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         style="?attr/materialCardViewElevatedStyle"
         app:cardElevation="3dp"
+        android:id="@+id/cardContainer"
         >
 
         <LinearLayout

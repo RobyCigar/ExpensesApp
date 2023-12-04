@@ -39,7 +39,6 @@ class DashboardFragment : Fragment() {
 
 
         expenseViewModel.allWords.observe(viewLifecycleOwner, Observer { words ->
-            // Update the cached copy of the words in the adapter.
             words?.let {
                 adapter?.submitList(it)
             }
